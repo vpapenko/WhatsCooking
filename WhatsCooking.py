@@ -15,7 +15,7 @@ from sklearn.preprocessing import LabelBinarizer
 from keras.models import Sequential
 from keras.layers import Dense
 
-train = pd.read_json('./train.json')
+train = pd.read_json('../input/train.json')
 
 t = Tokenizer()
 t.fit_on_texts(train['ingredients'])
@@ -25,13 +25,13 @@ encoder = LabelBinarizer()
 Y = encoder.fit_transform(train['cuisine'])
 
 model = Sequential()
-model.add(Dense(800, input_dim = len(X[0]), kernel_initializer='glorot_uniform', activation = 'relu'))
+model.add(Dense(1000, input_dim = len(X[0]), kernel_initializer='glorot_uniform', activation = 'relu'))
 model.add(Dense(len(Y[0]), kernel_initializer='glorot_uniform', activation = 'softmax'))
 model.compile(loss = 'binary_crossentropy', optimizer = 'adam', metrics = ['accuracy'])
-model.fit(X, Y, epochs = 3, batch_size = 15)
+model.fit(X, Y, epochs = 1, batch_size = 15)
 
 
-test = pd.read_json('./test.json')
+test = pd.read_json('../input/test.json')
 X = t.texts_to_matrix(test['ingredients'])
 
 prediction = model.predict(X)

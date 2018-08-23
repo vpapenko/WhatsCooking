@@ -21,7 +21,6 @@ X = t.texts_to_matrix(train['ingredients'])
 encoder = LabelBinarizer()
 Y = encoder.fit_transform(train['cuisine'])
 
-
 # baseline model
 def create_model(optimizer='adam', init='glorot_uniform', activation_hiden = 'relu', activation_out = 'softmax',loss = 'binary_crossentropy',l1=6000,l2=0):
 	X_len = 3469#6715
