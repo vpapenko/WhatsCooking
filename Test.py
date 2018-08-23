@@ -4,7 +4,6 @@ from keras.preprocessing.text import Tokenizer
 from sklearn.preprocessing import LabelBinarizer
 from keras.models import Sequential
 from keras.layers import Dense
-from g1 import Gene
 import numpy as np
 
 train = pd.read_json('./train.json')
